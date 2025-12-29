@@ -1,9 +1,9 @@
 [package]
-name = "usca"
+name = "uca"
 version = "0.1.0"
 edition = "2021"
 authors = ["mad4j"]
-description = "Component Framework for embedded systems"
+description = "Component Architecture for embedded systems"
 license = "MIT"
 
 [dependencies]
