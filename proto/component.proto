@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package usca.component;
+
+import "common.proto";
+
+// Component definition and metadata
+message Component {
+  usca.common.ComponentId id = 1;
+  string name = 2;
+  string description = 3;
+  string version = 4;
+  ComponentType type = 5;
+  repeated string dependencies = 6;
+}
+
+enum ComponentType {
+  SENSOR = 0;
+  ACTUATOR = 1;
+  CONTROLLER = 2;
+  SERVICE = 3;
+}
+
+// Component lifecycle messages
+message LifecycleCommand {
+  usca.common.ComponentId component_id = 1;
+  LifecycleAction action = 2;
+}
+
+enum LifecycleAction {
+  INITIALIZE = 0;
+  START = 1;
+  STOP = 2;
+  SHUTDOWN = 3;
+}
+
+// Component state
+message ComponentState {
+  usca.common.ComponentId component_id = 1;
+  usca.common.ComponentStatus status = 2;
+  usca.common.Timestamp last_update = 3;
+  map<string, string> properties = 4;
+}

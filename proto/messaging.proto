@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package usca.messaging;
+
+import "common.proto";
+
+// Message passing between components
+message Message {
+  usca.common.ComponentId sender = 1;
+  usca.common.ComponentId receiver = 2;
+  usca.common.Timestamp timestamp = 3;
+  string topic = 4;
+  bytes payload = 5;
+  MessagePriority priority = 6;
+}
+
+enum MessagePriority {
+  LOW = 0;
+  NORMAL = 1;
+  HIGH = 2;
+  CRITICAL = 3;
+}
+
+// Message queue operations
+message MessageQueue {
+  string queue_name = 1;
+  int32 capacity = 2;
+  int32 current_size = 3;
+}
+
+// Subscription to topics
+message Subscription {
+  usca.common.ComponentId subscriber = 1;
+  repeated string topics = 2;
+  MessagePriority min_priority = 3;
+}
