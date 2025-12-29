@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package usca.common;
+
+// Common types used across the framework
+
+// Unique identifier for components
+message ComponentId {
+  string id = 1;
+}
+
+// Status of a component
+enum ComponentStatus {
+  UNKNOWN = 0;
+  INITIALIZING = 1;
+  READY = 2;
+  RUNNING = 3;
+  STOPPED = 4;
+  ERROR = 5;
+}
+
+// Timestamp in microseconds since epoch
+message Timestamp {
+  int64 micros = 1;
+}
+
+// Generic result wrapper
+message Result {
+  bool success = 1;
+  string error_message = 2;
+}

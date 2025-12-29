@@ -1,0 +1,25 @@
+[package]
+name = "usca"
+version = "0.1.0"
+edition = "2021"
+authors = ["mad4j"]
+description = "Component Framework for embedded systems"
+license = "MIT"
+
+[dependencies]
+prost = "0.12"
+tonic = "0.11"
+tokio = { version = "1.35", features = ["macros", "rt-multi-thread"] }
+
+[build-dependencies]
+prost-build = "0.12"
+tonic-build = "0.11"
+
+[lib]
+name = "usca"
+path = "src/lib.rs"
+
+[[example]]
+name = "basic_usage"
+path = "examples/basic_usage.rs"
+

@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package usca.config;
+
+import "common.proto";
+import "component.proto";
+
+// System configuration
+message SystemConfig {
+  string system_name = 1;
+  string version = 2;
+  repeated usca.component.Component components = 3;
+  map<string, string> global_properties = 4;
+}
+
+// Component configuration
+message ComponentConfig {
+  usca.common.ComponentId component_id = 1;
+  map<string, ConfigValue> parameters = 2;
+}
+
+// Configuration value wrapper
+message ConfigValue {
+  oneof value {
+    string string_value = 1;
+    int64 int_value = 2;
+    double double_value = 3;
+    bool bool_value = 4;
+    bytes bytes_value = 5;
+  }
+}
+
+// Configuration update request
+message ConfigUpdateRequest {
+  usca.common.ComponentId component_id = 1;
+  map<string, ConfigValue> updates = 2;
+}
