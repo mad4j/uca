@@ -11,28 +11,37 @@
 //! - `config`: Configuration management
 
 // Include generated protobuf code
-pub mod generated {
+mod generated {
+    // Include all generated proto files into the private module
     include!("generated/usca.common.rs");
     include!("generated/usca.component.rs");
     include!("generated/usca.messaging.rs");
     include!("generated/usca.config.rs");
 }
 
-// Re-export main types for convenience
+// Re-export main types for convenience with explicit imports
 pub mod common {
-    pub use crate::generated::*;
+    //! Common types and definitions used across the framework
+    pub use crate::generated::{ComponentId, ComponentStatus, Result, Timestamp};
 }
 
 pub mod component {
-    pub use crate::generated::*;
+    //! Component definitions and lifecycle management
+    pub use crate::generated::{
+        Component, ComponentState, ComponentType, LifecycleAction, LifecycleCommand,
+    };
 }
 
 pub mod messaging {
-    pub use crate::generated::*;
+    //! Message passing between components
+    pub use crate::generated::{Message, MessagePriority, MessageQueue, Subscription};
 }
 
 pub mod config {
-    pub use crate::generated::*;
+    //! Configuration management
+    pub use crate::generated::{
+        config_value, ComponentConfig, ConfigUpdateRequest, ConfigValue, SystemConfig,
+    };
 }
 
 // Library version
