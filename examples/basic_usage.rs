@@ -19,7 +19,7 @@ fn main() {
     println!("Created sensor component:");
     println!("  ID: {:?}", sensor.id.as_ref().unwrap().id);
     println!("  Name: {}", sensor.name);
-    println!("  Type: {:?}", ComponentType::try_from(sensor.r#type).unwrap());
+    println!("  Type: {:?}", ComponentType::try_from(sensor.r#type).expect("Invalid component type"));
     println!();
 
     // Create an actuator component
@@ -32,7 +32,7 @@ fn main() {
     // Create component state
     let state = create_component_state(&sensor.id.as_ref().unwrap());
     println!("Component state:");
-    println!("  Status: {:?}", ComponentStatus::try_from(state.status).unwrap());
+    println!("  Status: {:?}", ComponentStatus::try_from(state.status).expect("Invalid component status"));
     println!("  Last update: {} micros", state.last_update.as_ref().unwrap().micros);
     println!();
 
@@ -47,7 +47,7 @@ fn main() {
     println!("  From: {}", message.sender.as_ref().unwrap().id);
     println!("  To: {}", message.receiver.as_ref().unwrap().id);
     println!("  Topic: {}", message.topic);
-    println!("  Priority: {:?}", MessagePriority::try_from(message.priority).unwrap());
+    println!("  Priority: {:?}", MessagePriority::try_from(message.priority).expect("Invalid message priority"));
     println!();
 
     // Create a subscription
@@ -76,7 +76,7 @@ fn main() {
     };
     println!("Lifecycle command:");
     println!("  Component: {}", command.component_id.as_ref().unwrap().id);
-    println!("  Action: {:?}", LifecycleAction::try_from(command.action).unwrap());
+    println!("  Action: {:?}", LifecycleAction::try_from(command.action).expect("Invalid lifecycle action"));
     println!();
 
     println!("Example completed successfully!");
